@@ -27,3 +27,10 @@ Alternatively, after the entries are sorted, we can use the index position of th
 Using this design, the 2nd challenge becomes trivial as we have both upper and lower bounds to calculate the linear interpolation.
 
 Output of the results are made into functions (print_spread_to_benchmark, print_spread_to_curve) so they can be easily modified to accommodate for other output format (e.g. write into csv file).
+
+## Tests
+sample_1.csv provides the data for a simple test for spread_to_benchmark
+sample_2.csv provides the data for a simple test for spread_to_curve
+sample_input.csv provides the data for a more complete test for both functionalities
+sample_3.csv provides the data for spread_to_benchmark when the smallest and biggest entries are not government bonds
+expected test results in rspec are manually calculated
