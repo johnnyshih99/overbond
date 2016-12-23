@@ -1,9 +1,7 @@
 # Yield spread function
-calc_spread takes 2 parameters:
-* csv - path to csv file
-* spread_to_curve - boolean value, with it turned on or off, calc_spread provides 2 functionalities
-  * Calculate the yield spread between a corporate bond and its government bond benchmark.
-  * Calculate the spread to the government bond curve.
+2 main functions both accepting path to csv file as their parameter:
+* calc_spread_to_benchmark - Calculate the yield spread between a corporate bond and its government bond benchmark.
+* calc_spread_to_curve - Calculate the spread to the government bond curve.
 
 ## Assumptions
 * There's a valid csv input file with fields 'bond,type,term,yield'
@@ -13,6 +11,7 @@ calc_spread takes 2 parameters:
   * yield is given in percentages
 * The first row of csv is the title header
 * all terms/yield are of different values
+* There's at least one gov bond with a term less than all corp bonds and a gov bond with a term greater than all corp bonds for spread_to_curve
 
 ## Reasoning behind technical choices
 I chose rspec for testing because I've never tried it before and so I thought it's a good chance to get familiar with it
