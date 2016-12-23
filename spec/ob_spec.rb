@@ -17,18 +17,18 @@ describe "spread to benchmark" do
     }
 
     it 'should match the output' do
-        expect { calc_spread("sample_1.csv") }.
+        expect { calc_spread_to_benchmark("sample_1.csv") }.
             to output(sample_1).to_stdout
 
-        expect { calc_spread("sample_input.csv") }.
+        expect { calc_spread_to_benchmark("sample_input.csv") }.
             to output(sample_output).to_stdout
 
-        expect { calc_spread("sample_3.csv") }.
+        expect { calc_spread_to_benchmark("sample_3.csv") }.
             to output(/C7,G5,4.80%/).to_stdout
     end
 
     it 'should not match the output' do
-        expect { calc_spread("sample_1.csv") }.
+        expect { calc_spread_to_benchmark("sample_1.csv") }.
             to_not output(/C1,G1,1.62%/).to_stdout
     end
 end
@@ -41,18 +41,18 @@ describe "spread_to_curve" do
     }
 
     it 'should match the output' do
-        expect { calc_spread("sample_2.csv", true) }.
+        expect { calc_spread_to_curve("sample_2.csv") }.
             to output(sample_2).to_stdout
 
-        expect { calc_spread("sample_input.csv", true) }.
+        expect { calc_spread_to_curve("sample_input.csv") }.
             to output(/C1,1.43%/).to_stdout
 
-        expect { calc_spread("sample_input.csv", true) }.
+        expect { calc_spread_to_curve("sample_input.csv") }.
             to output(/C3,2.47%/).to_stdout
     end
 
     it 'should not match the output' do
-        expect { calc_spread("sample_1.csv", true) }.
+        expect { calc_spread_to_curve("sample_1.csv") }.
             to_not output(/C5,1.93%/).to_stdout
     end
 end
