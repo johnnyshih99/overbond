@@ -10,23 +10,9 @@ require 'csv'
 # 3. There's at least one gov bond with a term less than all corp bonds and 
 #    a gov bond with a term greater than all corp bonds for spread_to_curve
 
-def print_spread_to_benchmark(bond, benchmark, spread)
-    s = bond << ',' << benchmark << ','
-    if spread.is_a? Numeric
-        s << '%.2f' % spread << '%'
-    else
-        s << spread
-    end
-    puts s
-end
-
-def print_spread_to_curve(bond, spread)
-    s = bond << ','
-    if spread.is_a? Numeric
-        s << '%.2f' % spread << '%'
-    else
-        s << spread
-    end
+def print_spread(str, spread=nil)
+    s = str
+    s << ',' << '%.2f' % spread << '%' unless spread.nil?
     puts s
 end
 
@@ -50,7 +36,7 @@ def calc_spread_to_benchmark(csv)
     file = prep_spread_data(csv)
     
     # print title
-    print_spread_to_benchmark('bond', 'benchmark','spread_to_benchmark')
+    print_spread('bond,benchmark,spread_to_benchmark')
 
     gov_lower = nil #hold government lower bound term
     corp_tmp = []
@@ -61,7 +47,7 @@ def calc_spread_to_benchmark(csv)
             if gov_lower.nil? and !corp_tmp.empty?
                 # first entries are of type corporate (no lower bound)
                 corp_tmp.each do |corp_data|
-                    print_spread_to_benchmark(corp_data[0], data[0],
+                    print_spread(corp_data[0] << "," << data[0],
                         (corp_data[3] - data[3]).abs)
                 end
             else # given lower bound (gov_lower) and upper bound (data)
@@ -69,10 +55,10 @@ def calc_spread_to_benchmark(csv)
                     if((corp_data[2] - gov_lower[2]).abs < 
                         (corp_data[2] - data[2]).abs)
                         # closest term is lower bound
-                        print_spread_to_benchmark(corp_data[0], gov_lower[0],
+                        print_spread(corp_data[0] << "," << gov_lower[0],
                             (corp_data[3] - gov_lower[3]).abs)
                     else #closest term is upper bound
-                        print_spread_to_benchmark(corp_data[0], data[0],
+                        print_spread(corp_data[0] << "," << data[0],
                             (corp_data[3] - data[3]).abs)
                     end
                 end
@@ -86,7 +72,7 @@ def calc_spread_to_benchmark(csv)
         # there's corporate entries left, meaning there's no upperbound
         # use the last lower bound as closest
         corp_tmp.each do |corp_data|
-           print_spread_to_benchmark(corp_data[0], gov_lower[0],
+           print_spread(corp_data[0] << "," << gov_lower[0],
                 (corp_data[3] - gov_lower[3]).abs) 
         end
        
@@ -99,7 +85,7 @@ def calc_spread_to_curve(csv)
     file = prep_spread_data(csv)
 
     # print title
-    print_spread_to_curve('bond', 'spread_to_curve')
+    print_spread('bond,spread_to_curve')
 
     gov_lower = nil #hold government lower bound term
     corp_tmp = []
@@ -113,7 +99,7 @@ def calc_spread_to_curve(csv)
                 a = ((data[3]-gov_lower[3])/(data[2]-gov_lower[2])).abs
                 b = data[3] - a*data[2]
                 y2 = a*corp_data[2] + b
-                print_spread_to_curve(corp_data[0], (y-y2).abs)
+                print_spread(corp_data[0], (y-y2).abs)
             end
             corp_tmp = []
             gov_lower = data #update lower bound
