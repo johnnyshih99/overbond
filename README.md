@@ -28,6 +28,8 @@ Using this design, the 2nd challenge becomes trivial as we have both upper and l
 
 Output of the results are made into functions (print_spread_to_benchmark, print_spread_to_curve) so they can be easily modified to accommodate for other output format (e.g. write into csv file).
 
+The solution can be imporved with some error checks on the input file, or depending on the specification, accept a wider range of input format. The tests can be more extensive as well, but it's made easy too add onto them with rspec.
+
 ## Tests
 * sample_1.csv provides the data for a simple test for spread_to_benchmark
 * sample_2.csv provides the data for a simple test for spread_to_curve
