@@ -1,8 +1,7 @@
 # Yield spread function
 calc_spread takes 2 parameters:
 * csv - path to csv file
-* spread_to_curve - a boolean value
-  With spread_to_curve, turned on or off, calc_spread provides 2 functionalities
+* spread_to_curve - boolean value, with it turned on or off, calc_spread provides 2 functionalities
   * Calculate the yield spread between a corporate bond and its government bond benchmark.
   * Calculate the spread to the government bond curve.
 
