@@ -3,15 +3,15 @@ calc_spread takes 2 parameters:
 * csv - path to csv file
 * spread_to_curve - a boolean value
   With spread_to_curve, turned on or off, calc_spread provides 2 functionalities
-  ** Calculate the yield spread between a corporate bond and its government bond benchmark.
-  ** Calculate the spread to the government bond curve.
+  * Calculate the yield spread between a corporate bond and its government bond benchmark.
+  * Calculate the spread to the government bond curve.
 
 ## Assumptions
 * There's a valid csv input file with fields 'bond,type,term,yield'
-  ** bond is the name of the bond
-  ** type is either corporate or government
-  ** term is given in years
-  ** yield is given in percentages
+  * bond is the name of the bond
+  * type is either corporate or government
+  * term is given in years
+  * yield is given in percentages
 * The first row of csv is the title header
 * all terms/yield are of different values
 
